@@ -120,7 +120,7 @@ app.get("/users", (request, response) => {
   if (request.query.gender === undefined) gender = null;
   else gender = request.query.gender;
 
-  const filteredResults = users.filter((user) => user.gender === gender);
+  const filteredResults = users.filter((user) => gender === undefined || user.gender === gender);
 
   let limit;
   if (request.query.limit === undefined) limit = 10;
