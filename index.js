@@ -131,7 +131,7 @@ app.get("/users", (request, response) => {
   const limit = request.query.limit ? parseInt(request.query.limit) : 10;
 
   const results = users
-    .filter((user) => user.gender === gender)
+    .filter((user) => gender === undefined || user.gender === gender)
     .slice(0, limit);
 
   response.send(results);
