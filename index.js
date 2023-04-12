@@ -116,7 +116,25 @@ const users = [
 ];
 
 app.get("/users", (request, response) => {
-  response.send(users);
+  /*let gender;
+  if (request.query.gender === undefined) gender = null;
+  else gender = request.query.gender;
+
+  const filteredResults = users.filter((user) => user.gender === gender);
+
+  let limit;
+  if (request.query.limit === undefined) limit = 10;
+  else limit = parseInt(request.query.limit);
+  const limitedResults = filteredResults.slice(0, limit);*/
+
+  const gender = request.query.gender;
+  const limit = request.query.limit ? parseInt(request.query.limit) : 10;
+
+  const results = users
+    .filter((user) => user.gender === gender)
+    .slice(0, limit);
+
+  response.send(results);
 });
 
 app.get("/users/:id", (request, response) => {
